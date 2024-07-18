@@ -1,0 +1,83 @@
+
+State Machine - |dnn|dnn_accel_system:sys|wordcopy:word_copy_acc_0|state
+Name state.INCREMENT state.SEND_DATA state.COLLECT state.WAIT_READ state.START_READ state.HOLD_N state.RECORD_N state.HOLD_SRC state.RECORD_SRC state.HOLD_DST state.RECORD_DST state.INIT 
+state.INIT 0 0 0 0 0 0 0 0 0 0 0 0 
+state.RECORD_DST 0 0 0 0 0 0 0 0 0 0 1 1 
+state.HOLD_DST 0 0 0 0 0 0 0 0 0 1 0 1 
+state.RECORD_SRC 0 0 0 0 0 0 0 0 1 0 0 1 
+state.HOLD_SRC 0 0 0 0 0 0 0 1 0 0 0 1 
+state.RECORD_N 0 0 0 0 0 0 1 0 0 0 0 1 
+state.HOLD_N 0 0 0 0 0 1 0 0 0 0 0 1 
+state.START_READ 0 0 0 0 1 0 0 0 0 0 0 1 
+state.WAIT_READ 0 0 0 1 0 0 0 0 0 0 0 1 
+state.COLLECT 0 0 1 0 0 0 0 0 0 0 0 1 
+state.SEND_DATA 0 1 0 0 0 0 0 0 0 0 0 1 
+state.INCREMENT 1 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |dnn|dnn_accel_system:sys|dnn_accel_system_nios2_qsys_0:nios2_qsys_0|dnn_accel_system_nios2_qsys_0_nios2_oci:the_dnn_accel_system_nios2_qsys_0_nios2_oci|dnn_accel_system_nios2_qsys_0_jtag_debug_module_wrapper:the_dnn_accel_system_nios2_qsys_0_jtag_debug_module_wrapper|dnn_accel_system_nios2_qsys_0_jtag_debug_module_tck:the_dnn_accel_system_nios2_qsys_0_jtag_debug_module_tck|DRsize
+Name DRsize.101 DRsize.100 DRsize.011 DRsize.010 DRsize.001 DRsize.000 
+DRsize.000 0 0 0 0 0 0 
+DRsize.001 0 0 0 0 1 1 
+DRsize.010 0 0 0 1 0 1 
+DRsize.011 0 0 1 0 0 1 
+DRsize.100 0 1 0 0 0 1 
+DRsize.101 1 0 0 0 0 1 
+
+State Machine - |dnn|dnn_accel_system:sys|dnn_accel_system_new_sdram_controller_0:new_sdram_controller_0|m_next
+Name m_next.010000000 m_next.000010000 m_next.000001000 m_next.000000001 
+m_next.000000001 0 0 0 0 
+m_next.000001000 0 0 1 1 
+m_next.000010000 0 1 0 1 
+m_next.010000000 1 0 0 1 
+
+State Machine - |dnn|dnn_accel_system:sys|dnn_accel_system_new_sdram_controller_0:new_sdram_controller_0|m_state
+Name m_state.100000000 m_state.010000000 m_state.001000000 m_state.000100000 m_state.000010000 m_state.000001000 m_state.000000100 m_state.000000010 m_state.000000001 
+m_state.000000001 0 0 0 0 0 0 0 0 0 
+m_state.000000010 0 0 0 0 0 0 0 1 1 
+m_state.000000100 0 0 0 0 0 0 1 0 1 
+m_state.000001000 0 0 0 0 0 1 0 0 1 
+m_state.000010000 0 0 0 0 1 0 0 0 1 
+m_state.000100000 0 0 0 1 0 0 0 0 1 
+m_state.001000000 0 0 1 0 0 0 0 0 1 
+m_state.010000000 0 1 0 0 0 0 0 0 1 
+m_state.100000000 1 0 0 0 0 0 0 0 1 
+
+State Machine - |dnn|dnn_accel_system:sys|dnn_accel_system_new_sdram_controller_0:new_sdram_controller_0|i_next
+Name i_next.111 i_next.101 i_next.010 i_next.000 
+i_next.000 0 0 0 0 
+i_next.010 0 0 1 1 
+i_next.101 0 1 0 1 
+i_next.111 1 0 0 1 
+
+State Machine - |dnn|dnn_accel_system:sys|dnn_accel_system_new_sdram_controller_0:new_sdram_controller_0|i_state
+Name i_state.111 i_state.101 i_state.011 i_state.010 i_state.001 i_state.000 
+i_state.000 0 0 0 0 0 0 
+i_state.001 0 0 0 0 1 1 
+i_state.010 0 0 0 1 0 1 
+i_state.011 0 0 1 0 0 1 
+i_state.101 0 1 0 0 0 1 
+i_state.111 1 0 0 0 0 1 
+
+State Machine - |dnn|dnn_accel_system:sys|dot:dot_product_acc_0|state
+Name state.WAIT_FOR_STABLE_IF state.WAIT_FOR_STABLE_W state.SEND_DATA state.WAIT_TO_SEND state.INCREMENT state.SHIFT state.MULTIPLY state.COLLECT_IF state.WAIT_READ_IF state.START_READ_IF state.COLLECT_W state.WAIT_READ_W state.START_READ_W state.HOLD state.HOLD_N state.RECORD_N state.HOLD_IF state.RECORD_IF state.HOLD_W state.RECORD_W state.INIT 
+state.INIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.RECORD_W 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.HOLD_W 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.RECORD_IF 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.HOLD_IF 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.RECORD_N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.HOLD_N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.HOLD 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.START_READ_W 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.WAIT_READ_W 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.COLLECT_W 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.START_READ_IF 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.WAIT_READ_IF 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.COLLECT_IF 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.MULTIPLY 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.SHIFT 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.INCREMENT 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.WAIT_TO_SEND 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.SEND_DATA 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.WAIT_FOR_STABLE_W 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.WAIT_FOR_STABLE_IF 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

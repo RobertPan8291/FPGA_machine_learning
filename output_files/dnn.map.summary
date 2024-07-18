@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Sun Jul 14 10:59:02 2024
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+Revision Name : dnn
+Top-level Entity Name : dnn
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 9529
+Total pins : 133
+Total virtual pins : 0
+Total block memory bits : 2,911,360
+Total DSP Blocks : 3
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 2
+Total DLLs : 0

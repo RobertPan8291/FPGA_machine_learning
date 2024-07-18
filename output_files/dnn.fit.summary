@@ -1,0 +1,20 @@
+Fitter Status : Successful - Sun Jul 14 11:02:15 2024
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+Revision Name : dnn
+Top-level Entity Name : dnn
+Family : Cyclone V
+Device : 5CSEMA5F31C6
+Timing Models : Final
+Logic utilization (in ALMs) : 3,781 / 32,070 ( 12 % )
+Total registers : 9770
+Total pins : 133 / 457 ( 29 % )
+Total virtual pins : 0
+Total block memory bits : 2,911,360 / 4,065,280 ( 72 % )
+Total RAM Blocks : 361 / 397 ( 91 % )
+Total DSP Blocks : 3 / 87 ( 3 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 2 / 6 ( 33 % )
+Total DLLs : 0 / 4 ( 0 % )
