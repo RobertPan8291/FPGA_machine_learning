@@ -53,18 +53,14 @@ module dot(input logic clk, input logic rst_n,
 				
 				logic [31:0] rounded_result;
 				
+				
+			  //state transitions	
 			  always_ff @(posedge clk or negedge rst_n) begin
 					if(~rst_n) begin
 						state <= INIT; 
 					end else begin		
 						case(state)
 							INIT: begin
-										/*if(slave_write && (slave_address == 4'd2))
-											state <= RECORD_W;
-										else if(slave_write && (slave_address == 4'd3))
-											state <= RECORD_IF;
-										else if(slave_write && (slave_address == 4'd5))
-											state <= RECORD_N;*/
 										if(slave_write && (slave_address == 4'd0))
 											state <= HOLD;
 										else 
@@ -79,14 +75,14 @@ module dot(input logic clk, input logic rst_n,
 							 HOLD: state <= START_READ_W; 
 							 START_READ_W: state <= WAIT_FOR_STABLE_W;
 							 WAIT_FOR_STABLE_W: begin 
-															if(stable_counter >= 5'd30)
+															if(stable_counter >= 5'd30)  //30 clk cycles for readdata to stablize 
 																state <= WAIT_READ_W;
 															else 
 																state <= WAIT_FOR_STABLE_W;
 													
 													  end
 							 WAIT_READ_W: begin
-										if(master_readdatavalid /*&& ~master_waitrequest*/) 
+										if(master_readdatavalid) 
 											state <= COLLECT_W;
 										else 
 											state <= WAIT_READ_W;
@@ -94,14 +90,14 @@ module dot(input logic clk, input logic rst_n,
 							 COLLECT_W: state <= START_READ_IF; 
 							 START_READ_IF: state <= WAIT_FOR_STABLE_IF;
 							 WAIT_FOR_STABLE_IF: begin 
-															if(stable_counter >= 5'd30)
+															if(stable_counter >= 5'd30)  //30 clk cycles for readdata to stablize
 																state <= WAIT_READ_IF;
 															else 
 																state <= WAIT_FOR_STABLE_IF;
 													
 													  end
 							 WAIT_READ_IF: begin
-										if(master_readdatavalid /*&& ~master_waitrequest*/) 
+										if(master_readdatavalid) 
 											state <= COLLECT_IF;
 										else 
 											state <= WAIT_READ_IF;
@@ -148,18 +144,6 @@ module dot(input logic clk, input logic rst_n,
 										sum <= 32'd0;	
 										stable_counter <= 5'd0;	
 									end
-							/*RECORD_W: begin
-											w_addr_reg <= slave_writedata;
-											slave_waitrequest <= 1'b0;
-										 end
-							RECORD_IF: begin
-											if_addr_reg <= slave_writedata; 
-											slave_waitrequest <= 1'b0;
-										  end
-							RECORD_N: begin
-											n_word <= slave_writedata;
-											slave_waitrequest <= 1'b0; 
-										 end*/
 							HOLD: slave_waitrequest <= 1'b0; 
 							START_READ_W: begin 
 													master_read <= 1'b1;
@@ -171,9 +155,7 @@ module dot(input logic clk, input logic rst_n,
 													 end
 							WAIT_READ_W: stable_counter <= 5'd0;
 							COLLECT_W: begin
-													//temp_w <= master_readdata;
 													master_read <= master_read;
-													//master_address <= 32'd0;
 										  end
 							START_READ_IF: begin
 													master_read <= 1'b1;
@@ -184,29 +166,16 @@ module dot(input logic clk, input logic rst_n,
 													 end
 							WAIT_READ_IF: stable_counter <= 5'd0;
 							COLLECT_IF: begin
-													//temp_if <= master_readdata;
 													master_read <= master_read;
-													//master_address <= 32'd0;
 											end
-							/*MULTIPLY: begin 
-													temp_result <= (temp_w * temp_if);
-										 end
-							SHIFT: begin 
-											temp_result <= temp_result >> 16;
-									 end*/
 							INCREMENT: begin
-												//w_addr_reg <= w_addr_reg + 1'b1;
-												//if_addr_reg <= if_addr_reg + 1'b1;
 												n_word_counter <= n_word_counter + 1'b1;
 												sum <= sum + temp_result; 
 										  end
 							WAIT_TO_SEND: begin
 												slave_readdata <= sum;
 											  end
-							//SEND_DATA: begin
-												//slave_waitrequest <= 1'b0;
-										  //end
-							
+
 					
 						endcase
 					end	
@@ -214,14 +183,15 @@ module dot(input logic clk, input logic rst_n,
 			  
 			  
 			  always_ff @(posedge clk) begin
-					if((state == WAIT_READ_W) && (master_readdatavalid /*&& ~master_waitrequest*/))
+					if((state == WAIT_READ_W) && (master_readdatavalid))
 						temp_w <= master_readdata;
 			  end
 			  
 			  always_ff @(posedge clk) begin
-					if((state == WAIT_READ_IF) && (master_readdatavalid /*&& ~master_waitrequest*/))
+					if((state == WAIT_READ_IF) && (master_readdatavalid))
 						temp_if <= master_readdata;
 			  end
+			  
 			  
 			  always_ff @(posedge clk) begin
 					if((state == INIT) && (slave_write && (slave_address == 4'd2)))
@@ -249,6 +219,8 @@ module dot(input logic clk, input logic rst_n,
 					.result(temp_result)
 				);
 			 
+			 
+			 //Optionally could send a rounded result 
 			 rounder rounder_inst(
 					.in(sum),
 					.round_32_bit(rounded_result)
