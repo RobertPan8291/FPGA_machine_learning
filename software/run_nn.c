@@ -20,7 +20,7 @@ volatile int *l3_acts = (volatile int *) 0x08803000; /* activations of layer 3 (
 void vga_plot(unsigned x, unsigned y, unsigned colour);
 
 
-
+int SW = 0;
 
 #define L1_IN  784
 #define L1_OUT 1000
@@ -111,7 +111,7 @@ void apply_layer_dot(int n_in, int n_out, volatile int *b, volatile int *w, int 
 {
     for (unsigned o = 0, wo = 0; o < n_out; ++o, wo += n_in) {
         int sum = b[o]; /* bias for the current output index */
-      #if ( DONE_TASK6 || DONE_TASK7 )
+      #if (SW == 0)
         sum += dotprod_hw( n_in, (volatile int *) (((unsigned int)(((unsigned char*)& w[wo]) - 0x08000000) / 4) + 0x08000000), (volatile int*)(((unsigned int)(((unsigned char*)ifmap) - 0x08000000) / 4) + 0x08000000));
       #else // BASELINE
         sum += dotprod_sw( n_in, &w[wo], ifmap );
