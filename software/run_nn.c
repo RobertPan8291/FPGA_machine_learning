@@ -63,7 +63,7 @@ void wordcopy_sw( volatile int *dst, volatile int *src, int n_words )
 
 void wordcopy( volatile int *dst, volatile int *src, int n_words )
 {
-  #if ( DONE_TASK5 || DONE_TASK6 || DONE_TASK7 || DONE_TASK8 )
+  #if (SW == 0)
     wordcopy_hw( dst, src, n_words );
   #else
     wordcopy_sw( dst, src, n_words );
